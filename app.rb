@@ -12,7 +12,15 @@ end
 class Barber < ActiveRecord::Base
 end
 
+# метод before исполняется перед каждым запросом GET или POST ======================
+before do
+    @barbers = Barber.all
+end
+
 get '/' do
-	@barbers = Barber.all 
 	erb :index
+end
+
+get '/visit' do
+    erb :visit
 end
