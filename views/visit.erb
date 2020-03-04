@@ -22,34 +22,22 @@
 
       <div class="form-group">
         <label>Введите Ваше имя</label>
-        <input name="user_name" type="text" class="form-control" placeholder="Ваше имя" value="<%= @user_name %>">
+        <input name="client[name]" type="text" class="form-control" placeholder="Ваше имя" value="">
       </div>
 
       <div class="form-group">
         <label>Введите Ваш телефон</label>
-        <input name="phone" type="text" class="form-control" placeholder="987-654-32-10" value="<%= @phone %>">
+        <input name="client[phone]" type="text" class="form-control" placeholder="987-654-32-10" value="">
       </div>
 
       <div class="form-group">
         <label>Введите дату и время визита</label>
-        <input id="datetimepicker" name= "date_time" type="text" class="form-control" placeholder="12.03.2020 - 10:00" value="<%= @date_time %>">
-      </div>
-      
-      <div class="form-group">
-        <label>Ваш парикмахер</label>
-        <select name="barber" class="form-control">
-
-          <!-- Здесь @barbers - это массив хешей, в которм все записи и в каждой записи все поля, а  item - это элемент этого массива, т.е. хеш, в котором только одна запись и все поля этой записи -->
-          <% @barbers.each do |item| %>
-              <option <%= @barber == item['name'] ? 'selected' : '' %> ><%= item['name'] %> </option>
-          <% end %>
-  
-        </select>
+        <input id="datetimepicker" name= "client[datestamp]" type="text" class="form-control" placeholder="12.03.2020 - 10:00" value="">
       </div>
 
       <div class="form-group">
             <label>Выберите цвет </label>
-            <select id="color" name="color">
+            <select id="color" name="client[color]">
               <option value="#7bd148">Green</option>
               <option value="#5484ed">Bold blue</option>
               <option value="#a4bdfc">Blue</option>

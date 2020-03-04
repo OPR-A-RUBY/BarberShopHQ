@@ -26,40 +26,13 @@ get '/visit' do		# ===================== V I S I T ======================== GET 
 end
 
 post '/visit' do	# ===================== V I S I T ======================= POST ===
-                                        # Данные из формы представления visit.erb
-                                        # теперь становятся переменными этого метода
-    @user_name = params[:user_name]
-    @phone     = params[:phone]
-    @date_time = params[:date_time]
-    @barber    = params[:barber]
-    @color     = params[:color]
-                                        # Хеш для сообщений о необходимости дозаполнить
-                                        # форму в visit.erb для записи клиента к барберу.
-    hh = {  :user_name => 'Введите имя ',				# VALIDATION
-                :phone => 'Введите номер телефона ',
-            :date_time => 'Введите дату и время ' }
-
-    # Для каждой пары ключ-значение делать:
-    hh.each do |key, value|
-        # если параметр из формы не заполнен (пустой)
-        if params[key] == ''
-            # то переменной error присвоить союе value из хеша hh
-            # т.е переменной error присвоить сообщение об ошибке по даному параметру
-            @error = hh[key]
-            return erb :visit   # вернуться в форму для ввода недостающего параметра 
-        end
-    end
-
+     
+  	c = Client.new params[:client]	# Создать нового клиента, у которого
+	
+  	c.save							# Записать данные в таблицу БД
+    
     @title = 'Спасибо!'
     @message = "Спасибо вам, #{@user_name}, будем ждать Вас."
-  
-  	c = Client.new					# Создать нового клиента, у которого
-		c.name 		= @user_name		# поле записи name взять из перемнной @user_name
-		c.phone		= @phone			# поле записи phone взять из переменной @phone
-		c.datestamp	= @date_time		# ... аналогично ...
-		c.barber 	= @barber 			# 
-		c.color 	= @color 			#
-  	c.save							# Записать данные в таблицу БД
     
     erb :message
 
