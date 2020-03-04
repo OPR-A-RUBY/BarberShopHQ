@@ -35,11 +35,7 @@ post '/visit' do	# ===================== V I S I T ======================= POST 
     @color     = params[:color]
                                         # Хеш для сообщений о необходимости дозаполнить
                                         # форму в visit.erb для записи клиента к барберу.
-<<<<<<< HEAD
     hh = {  :user_name => 'Введите имя ',				# VALIDATION
-=======
-    hh = {  :user_name => 'Введите имя ',
->>>>>>> 07a051360a9d87dcdb9c0789c29e39af64267a14
                 :phone => 'Введите номер телефона ',
             :date_time => 'Введите дату и время ' }
 
@@ -57,24 +53,14 @@ post '/visit' do	# ===================== V I S I T ======================= POST 
     @title = 'Спасибо!'
     @message = "Спасибо вам, #{@user_name}, будем ждать Вас."
   
-    # db = get_db                         # Внести данные базу, таблица db_t_visit
-    # db.execute 'INSERT INTO db_t_visit 
-    #     (
-    #         user_name, 
-    #         phone, 
-    #         data_time, 
-    #         barber,
-    #         color
-    #     ) 
-    #     VALUES ( ?, ?, ?, ?, ?)', 
-    #     [
-    #         @user_name,                 # порядок здесь должен соответствовать
-    #         @phone,                     # порядку в запросе INSERT (выше)
-    #         @date_time, 
-    #         @barber,
-    #         @color
-    #     ]    
-
+  	c = Client.new					# Создать нового клиента, у которого
+		c.name 		= @user_name		# поле записи name взять из перемнной @user_name
+		c.phone		= @phone			# поле записи phone взять из переменной @phone
+		c.datestamp	= @date_time		# ... аналогично ...
+		c.barber 	= @barber 			# 
+		c.color 	= @color 			#
+  	c.save							# Записать данные в таблицу БД
+    
     erb :message
 
 end
