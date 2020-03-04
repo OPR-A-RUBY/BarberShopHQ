@@ -11,6 +11,5 @@ class CreateBarbers < ActiveRecord::Migration[6.0]
   	Barber.create :name => 'Walter Whait'
   	Barber.create :name => 'Gas Fring'
 
-
   end
 end
