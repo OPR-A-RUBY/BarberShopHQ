@@ -51,9 +51,15 @@ post '/visit' do	# ===================== V I S I T ======================= POST 
  
 end
 
-get '/barber/:id' do		# ===================== B A R B E R ================== GET ===
+get '/barber/:id' do	# ===================== B A R B E R ================== GET ===
     # erb "This is gonna be page of barber, dude!" # Здесь будет страница парикмахера.
     @barber = Barber.find(params[:id])
     erb :barber
+    # 
+end
+
+get '/bookings' do		# ================= B O O K I N G S ================== GET ===
+    @clients = Client.order('created_at DESC')   
+    erb :bookings
     # 
 end
