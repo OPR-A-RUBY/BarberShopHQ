@@ -50,3 +50,8 @@ post '/visit' do	# ===================== V I S I T ======================= POST 
 	end 
  
 end
+
+get '/barber/:id' do		# ===================== B A R B E R ================== GET ===
+    # erb "This is gonna be page of barber, dude!"
+    erb :barber
+end
