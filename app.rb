@@ -41,10 +41,15 @@ post '/visit' do	# ===================== V I S I T ======================= POST 
     
 	    @title = 'Спасибо!'
 	    @message = "Спасибо вам, будем ждать Вас."
+	    erb :message
+
 	else
+
 		@title = 'Ошибка!'
 	    @message = "Данные не прошли проверку. Вы не записаны."
-	end    
-     erb :message
-
+	    @error = c.errors.full_messages.first
+	    erb :visit
+	
+	end 
+ 
 end
