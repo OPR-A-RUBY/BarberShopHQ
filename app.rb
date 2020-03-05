@@ -7,6 +7,10 @@ require 'sinatra/activerecord'
 set :database, 'sqlite3:barbershop.db'
 
 class Client < ActiveRecord::Base 
+	validates :name, presence: true 
+	validates :phone, presence: true 
+	validates :datestamp, presence: true 
+	validates :color, presence: true 
 end
 
 class Barber < ActiveRecord::Base
@@ -32,6 +36,8 @@ post '/visit' do	# ===================== V I S I T ======================= POST 
   	# Они будут заполняться сразу в форме visit.erb и передаваться сюда хешем.
 
   	c.save							# Записать данные в таблицу БД
+  									# Здесь происходит валидация данных
+  	# настройка которых происходит при описании class Client (см. выше)
     
     @title = 'Спасибо!'
     @message = "Спасибо вам, #{@user_name}, будем ждать Вас."
