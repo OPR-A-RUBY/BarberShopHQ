@@ -26,16 +26,17 @@ get '/' do 			# ================================================================
 end 
 
 get '/visit' do		# ===================== V I S I T ======================== GET ===
+    @c = Client.new
     erb :visit
 end
 
 post '/visit' do	# ===================== V I S I T ======================= POST ===
      
-  	c = Client.new params[:client]	# Создать нового клиента, у которого будут 
+  	@c = Client.new params[:client]	# Создать нового клиента, у которого будут 
   									# параметы как у объекта client.
   	# Они будут заполняться сразу в форме visit.erb и передаваться сюда хешем.
 
-  	if c.save						# Записать данные в таблицу БД
+  	if @c.save						# Записать данные в таблицу БД
   									# Здесь происходит валидация данных
   	# настройка которых происходит при описании class Client (см. выше)
     
@@ -43,7 +44,7 @@ post '/visit' do	# ===================== V I S I T ======================= POST 
 
 	else
 
-		@error = c.errors.full_messages.first
+		@error = @c.errors.full_messages.first
 	    erb :visit
 	
 	end 
