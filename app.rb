@@ -63,3 +63,10 @@ get '/bookings' do		# ================= B O O K I N G S ================== GET =
     erb :bookings
     # 
 end
+
+get '/client/:id' do	# ===================== C L I E N T ================== GET ===
+    @client = Client.find(params[:id])   
+    erb "Клиент = #{ @client.name }"
+    # :client
+    # 
+end
